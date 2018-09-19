@@ -1,5 +1,6 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto Mono', monospace, 'Lato', sans-serif;
+  height: 100%;
+  font-family: 'Lato', 'Roboto Mono', monospace, sans-serif;
 }

@@ -16,7 +16,7 @@ let mainWindow
 // Function which creates main window
 createWindow = () => {
     // Create browser window
-    mainWindow = new BrowserWindow({ width: 600, height: 400, maxHeight: 400, maxWidth: 600, maximizable: false, resizable: false });
+    mainWindow = new BrowserWindow({ width: 600, height: 400, maximizable: false, resizable: false });
 
     // load index.html of the app
     const startUrl = process.env.ELECTRON_START_URL || url.format({
