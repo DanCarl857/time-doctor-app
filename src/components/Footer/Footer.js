@@ -6,14 +6,38 @@ import FooterStyled, { FooterTextStyled, FooterSpanText } from './styles';
  * Serves as footer to the application
 */
 class Footer extends React.Component {
+    
+    constructor(props) {
+        super(props);
+        this.state = {
+            time: new Date().toUTCString(),
+            minutes: 0
+        }
+        this.tick = this.tick.bind(this);
+    }
+
+    componentDidMount() {
+        this.tickID = setInterval(this.tick, 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.tickID);
+    }
+
+    tick() {
+        this.setState({ 
+            time: new Date().toUTCString()
+        })
+    }
+
     render() {
         return (
             <FooterStyled>
                 <FooterTextStyled>
-                    Worked Today: <FooterSpanText>06m</FooterSpanText>
+                    Worked Today: <FooterSpanText>{this.state.minutes}m</FooterSpanText>
                 </FooterTextStyled>
                 <FooterTextStyled>
-                    Company Time: <FooterSpanText>10:24 PM GMT +08:00</FooterSpanText>
+                    Company Time: <FooterSpanText>{this.state.time}</FooterSpanText>
                 </FooterTextStyled>
             </FooterStyled>
         )

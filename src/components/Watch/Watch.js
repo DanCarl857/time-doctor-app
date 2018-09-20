@@ -67,7 +67,7 @@ class Watch extends React.Component {
                             <ElapsedTime timingEvents={this.state.timingEvents} running={this.state.running} />
                         </Column>
                         <Column>
-                            <Buttons handleClick={this.addTimerEvent} timingEvents={this.state.timingEvents} />
+                            <Buttons handleClick={this.addTimerEvent} timingEvents={this.state.timingEvents} running={this.state.running} />
                         </Column>
                     </Container>
                 </WatchStyled>

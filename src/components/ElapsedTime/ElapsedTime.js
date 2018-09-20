@@ -15,6 +15,7 @@ function elapsedTime(events){
         elapsed += stop - start;
     }
 
+    console.log(elapsed);
     return elapsed;
 }
 
