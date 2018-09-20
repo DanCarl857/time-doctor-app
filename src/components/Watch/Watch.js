@@ -1,8 +1,15 @@
 import React from 'react';
 import WatchStyled, { Container, Column } from './styles';
 
+// React redux configs
+import { connect } from 'react-redux';
+
+// Custom components
 import Buttons from './../Buttons/Buttons';
 import ElapsedTime from './../ElapsedTime/ElapsedTime';
+
+// Action Creators
+import { updateRunningState } from './../../actions/running.action';
 
 /* 
  * Watch component:
@@ -16,7 +23,8 @@ class Watch extends React.Component {
 
         this.state = {
             timingEvents: [],
-            nonce: 0
+            nonce: 0,
+            running: false
         }
 
         this.addTimerEvent = this.addTimerEvent.bind(this);
@@ -29,12 +37,25 @@ class Watch extends React.Component {
     }
 
     addTimerEvent() {
+        const { timingEvents } = this.state;
+
         this.setState({
             timingEvents: [
-                ...this.state.timingEvents,
+                ...timingEvents,
                 new Date()
             ]
         });
+
+    
+        if (timingEvents.length % 2 === 0) {
+            // Update whole app with running state using action creator
+            this.props.updateRunningState(timingEvents.length % 2);
+            this.setState({ running: true });
+        } else {
+            // When timer stops we still have to update the running state
+            this.props.updateRunningState(1);
+            this.setState({ running: false });
+        }
     }
 
     render() {
@@ -43,7 +64,7 @@ class Watch extends React.Component {
                 <WatchStyled>
                     <Container>
                         <Column>
-                            <ElapsedTime timingEvents={this.state.timingEvents} />
+                            <ElapsedTime timingEvents={this.state.timingEvents} running={this.state.running} />
                         </Column>
                         <Column>
                             <Buttons handleClick={this.addTimerEvent} timingEvents={this.state.timingEvents} />
@@ -55,4 +76,4 @@ class Watch extends React.Component {
     }
 }
 
-export default Watch;
+export default connect(null, { updateRunningState })(Watch);

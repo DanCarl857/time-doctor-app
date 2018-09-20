@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const Container = styled.button`
-    background-color: #6B849E;
+    background-color: ${props => props.running ? '#53BE78' : '#6B849E'};
     font-size: 50px;
-    border-color: #6B849E;
+    border: none;
     height: 70px;
     width: 70px;
     border-radius: 35px;

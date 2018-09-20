@@ -19,7 +19,7 @@ function elapsedTime(events){
 }
 
 // Function to get elapsed time in terms of hours, minutes and seconds
-function formatElapsedTime(time) {
+function formatElapsedTime(time, running_state) {
     // Converts time to exact seconds
     time = Math.floor(time/1000).toFixed(0);
 
@@ -33,8 +33,8 @@ function formatElapsedTime(time) {
     var seconds = parseInt(time % 60, 10);
 
     return (
-        <Container>
-            <Text>{hours < 10 ? '0' + hours: hours}</Text>:<Text>{minutes < 10 ? '0' + minutes : minutes}</Text>:<Text>{seconds < 10 ? '0' + seconds : seconds}</Text>
+        <Container running={running_state}>
+            <Text running={running_state}>{hours < 10 ? '0' + hours: hours}</Text>:<Text running={running_state}>{minutes < 10 ? '0' + minutes : minutes}</Text>:<Text running={running_state}>{seconds < 10 ? '0' + seconds : seconds}</Text>
         </Container>
     )
 }
@@ -46,7 +46,7 @@ function formatElapsedTime(time) {
 const ElapsedTime = (props) => {
     return (
         <div>
-            { formatElapsedTime(elapsedTime(props.timingEvents))}
+            { formatElapsedTime(elapsedTime(props.timingEvents), props.running)}
         </div>
     )
 } 
