@@ -1,4 +1,5 @@
 import React from 'react';
+import Container, { Text } from './styles';
 
 // Function to get the elapsed time in milliseconds
 function elapsedTime(events){
@@ -32,9 +33,9 @@ function formatElapsedTime(time) {
     var seconds = parseInt(time % 60, 10);
 
     return (
-        <div>
-            <span>{hours}</span>:<span>{minutes < 10 ? '0' + minutes : minutes}</span>:<span>{seconds < 10 ? '0' + seconds : seconds}</span>
-        </div>
+        <Container>
+            <Text>{hours < 10 ? '0' + hours: hours}</Text>:<Text>{minutes < 10 ? '0' + minutes : minutes}</Text>:<Text>{seconds < 10 ? '0' + seconds : seconds}</Text>
+        </Container>
     )
 }
 

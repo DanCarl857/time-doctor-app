@@ -14,13 +14,12 @@ const WatchStyled = styled.section`
 `
 
 const Container = styled.div`
-    margin-top: 1%;
+    margin-top: 14%;
+
 `
 
-const Text = styled.p`
-    font-size: 65px;
-    font-weight: 300;
-    color: #1c1c1c;
+const Column = styled.div`
+    float: left;
 `
 
-export { WatchStyled as default, Container, Text }
+export { WatchStyled as default, Container, Column }
