@@ -1,5 +1,6 @@
 import React from 'react';
 import Container, { Image } from './styles';
+// import PropTypes from 'prop-types';
 
 /* 
  * Button component:
@@ -12,7 +13,7 @@ const Buttons = (props) => {
 
     return (
         <div>
-            <Container onClick={props.handleClick}>{btn}</Container>
+            <Container running={props.running} onClick={props.handleClick}>{btn}</Container>
         </div>
     )
 }

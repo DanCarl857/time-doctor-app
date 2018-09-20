@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Text = styled.span`
-    background-color: #6B849E;
+    background-color: ${props => props.running ? '#53BE78' : '#6B849E'};
     padding: 8px;
     border-radius: 8px;
     color: #fff;
@@ -12,7 +12,7 @@ const Text = styled.span`
 const Container = styled.div`
     font-size: 45px;
     font-weight: 300;
-    color: #6B849E;
+    color: ${props => props.running ? '#53BE78' : '#6B849E'};
     float: right
 `
 

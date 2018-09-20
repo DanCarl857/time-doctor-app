@@ -16,7 +16,7 @@
 
 ##### Development
 
-* Development Time: _3hrs 30mins_
+* Development Time: _5hrs 40mins_
 
 ###### Running the application
 * `git clone https://github.com/DanCarl857/time-doctor-app`
