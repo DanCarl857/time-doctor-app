@@ -13,7 +13,7 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^3.4.9"
   },
-  "main": "src/electron-starter.js",
+  "main": "src/config/electron-starter.js",
   "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
