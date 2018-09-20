@@ -1,5 +1,6 @@
 import React from 'react';
 import FooterStyled, { FooterTextStyled, FooterSpanText } from './styles';
+import { connect } from 'react-redux';
 
 /* 
  * Footer component:
@@ -44,4 +45,10 @@ class Footer extends React.Component {
     }
 }
 
-export default Footer;
+// function mapStateToProps(state) {
+//     return {
+//         elapsed_time: state.elapsedTime
+//     }
+// }
+
+export default connect(null, null)(Footer);

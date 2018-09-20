@@ -8,15 +8,16 @@ const BrowserWindow = electron.BrowserWindow;
 
 const path = require('path');
 const url = require('url');
+const Menu = electron.Menu;
 
 // Keep global reference to window object to avoid window
 // being closed during JS object garbage collection
-let mainWindow
+let mainWindow;
 
 // Function which creates main window
 createWindow = () => {
     // Create browser window
-    mainWindow = new BrowserWindow({ width: 600, height: 400, maximizable: false, resizable: false });
+    mainWindow = new BrowserWindow({ width: 650, height: 350, maximizable: false, resizable: false, title: 'Time Doctor' });
 
     // load index.html of the app
     const startUrl = process.env.ELECTRON_START_URL || url.format({
@@ -33,6 +34,71 @@ createWindow = () => {
     mainWindow.on('closed', () => {
         mainWindow = null;
     });
+
+    const template = [
+		{
+			label: 'Time Doctor',
+			submenu: [
+				{
+					role: 'quit'
+				}
+			]
+		},
+		{
+			label: 'Widget',
+			submenu: [
+				{
+                    label: 'Show',
+                    click: function() {
+                        console.log('Clicked show');
+                    }
+                },
+				{
+					label: 'Minimize',
+                    click: function() {
+                        console.log('Clicked minimize');
+                    }
+                },
+                {
+					type: 'separator'
+				},
+				{
+					label: 'Exit',
+                    click: function() {
+                        console.log('Clicked exit');
+                    }
+                }
+			]
+        },
+        {
+            label: 'Lap Times',
+            submenu: [
+                {
+                    label: 'Show',
+                    click: function() {
+                        console.log('Clicked show laps');
+                    }
+                },
+                {
+                    type: 'separator'
+                },
+                {
+                    label: 'Close',
+                    click: function() {
+                        console.log('Clicked close');
+                    }
+                }
+            ]
+        },
+        {
+            label: 'Contribute',
+            click: function() {
+                electron.shell.openExternal('https://github.com/DanCarl857/time-doctor-app')
+            }
+        }
+	];
+
+Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 }
 
 // Called after initialization

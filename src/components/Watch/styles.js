@@ -14,7 +14,7 @@ const WatchStyled = styled.section`
 `
 
 const Container = styled.div`
-    margin-top: 14%;
+    margin-top: 9%;
 
 `
 

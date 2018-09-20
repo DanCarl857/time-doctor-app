@@ -2,7 +2,7 @@ import React from 'react';
 import Container, { Text } from './styles';
 
 // Function to get the elapsed time in milliseconds
-function elapsedTime(events){
+function elapsedTime(events, elapsedTime){
     let elapsed = 0;
 
     for (let i = 0; i < events.length; i+= 2) {
@@ -10,12 +10,13 @@ function elapsedTime(events){
 
         // Use current date if stop event doesn't exist yet
         const stop = events[i+1] || new Date();
-
         // Calculate elapsed time
         elapsed += stop - start;
     }
 
-    console.log(elapsed);
+    // Pass elapsed time back to parent
+    elapsedTime(elapsed);
+
     return elapsed;
 }
 
@@ -47,7 +48,7 @@ function formatElapsedTime(time, running_state) {
 const ElapsedTime = (props) => {
     return (
         <div>
-            { formatElapsedTime(elapsedTime(props.timingEvents), props.running)}
+            { formatElapsedTime(elapsedTime(props.timingEvents, props.computeElapsedTime), props.running)}
         </div>
     )
 } 
