@@ -1,17 +1,18 @@
 import React from 'react';
+import Container, { Image } from './styles';
 
 /* 
  * Button component:
  * Displays the start or stop button depending on whether we are on a start or stop event
 */
 const Buttons = (props) => {
-    const label = props.timingEvents.length % 2 === 0
-        ? 'Start'
-        : 'Stop'
+    const btn = props.timingEvents.length % 2 === 0
+        ? <Image src={require('../../assets/play.png')} alt="Play button"/>
+        : <Image src={require('../../assets/stop.png')} alt="Pause button" />
 
     return (
         <div>
-            <button onClick={props.handleClick}>{label}</button>
+            <Container onClick={props.handleClick}>{btn}</Container>
         </div>
     )
 }

@@ -1,6 +1,5 @@
 import React from 'react';
-import WatchStyled, { Container, Text } from './styles';
-// import moment from 'moment';
+import WatchStyled, { Container, Column } from './styles';
 
 import Buttons from './../Buttons/Buttons';
 import ElapsedTime from './../ElapsedTime/ElapsedTime';
@@ -42,14 +41,14 @@ class Watch extends React.Component {
         return (
             <div>
                 <WatchStyled>
-                    {/* <Container>
-                        <Text>{this.state.currentTime}</Text>
-                    </Container> */}
                     <Container>
-                        <ElapsedTime timingEvents={this.state.timingEvents} />
-                        <Buttons handleClick={this.addTimerEvent} timingEvents={this.state.timingEvents} />
+                        <Column>
+                            <ElapsedTime timingEvents={this.state.timingEvents} />
+                        </Column>
+                        <Column>
+                            <Buttons handleClick={this.addTimerEvent} timingEvents={this.state.timingEvents} />
+                        </Column>
                     </Container>
-                    
                 </WatchStyled>
             </div>
         )

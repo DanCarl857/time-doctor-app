@@ -4,3 +4,8 @@ body {
   height: 100%;
   font-family: 'Lato', 'Roboto Mono', monospace, sans-serif;
 }
+
+/* remove blue border outline */
+*:focus {
+  outline: none !important;
+}
