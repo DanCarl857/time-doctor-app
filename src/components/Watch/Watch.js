@@ -1,6 +1,9 @@
 import React from 'react';
 import WatchStyled, { Container, Text } from './styles';
-import moment from 'moment';
+// import moment from 'moment';
+
+import Buttons from './../Buttons/Buttons';
+import ElapsedTime from './../ElapsedTime/ElapsedTime';
 
 /* 
  * Watch component:
@@ -12,104 +15,41 @@ class Watch extends React.Component {
     constructor(props) {
         super(props);
 
-        // Initial state
         this.state = {
-            toggle: false
-        }; 
+            timingEvents: [],
+            nonce: 0
+        }
 
-        // this holds the actual time
-        this.time = null;
-
-        // Used to clear the interval
-        this.intervalId = null;
-
-        // holds the formatted current time in HH:mm:ss
-        this.state.currentTime = "00:00:00";
+        this.addTimerEvent = this.addTimerEvent.bind(this);
+        this.tick = this.tick.bind(this);
+        this.poll = setInterval(this.tick, 1000);
     } 
 
-    componentDidMount() {
-        this.initializeTime();
-        this.createInterval();
+    tick() {
+        this.setState((prevState) => ({ nonce: prevState.nonce + 1 }));
     }
 
-    initializeTime = () => {
-        this.time = 0;
+    addTimerEvent() {
         this.setState({
-            currentTime: this.formatTime(this.getTime())
-        });
-    }
-
-    createInterval() {
-        this.intervalId = setInterval(this.updateTime, 100);
-    }
-
-    clearInterval() {
-        clearInterval(this.intervalId);
-    }
-
-    updateTime = () => {
-        this.time += 100;
-        const newTime = this.getTime();
-        const formattedTime = this.formatTime(newTime);
-
-        this.setState({ currentTime: formattedTime });
-    }
-
-    formatTime = (obj) => {
-        return obj.format("HH:mm:ss");
-    }
-
-    getTime = () => {
-        return moment.utc(this.time);
-    }
-
-    playTime = () => {
-        console.log('play');
-        if (!this.state.toggle) {
-            this.startTime();
-        } else {
-            this.pauseTime();
-        }
-    }
-
-    startTime = () => {
-        this.createInterval();
-        this.toggle();
-    }
-
-    pauseTime = () => {
-        this.clearInterval();
-        this.toggle();
-    }
-
-    resetTime = () => {
-        this.initializeTime();
-        this.clearInterval();
-        this.setState({ toggle: false });
-    }
-
-    toggle = () => {
-        this.setState({
-            toggle: !this.state.toggle
+            timingEvents: [
+                ...this.state.timingEvents,
+                new Date()
+            ]
         });
     }
 
     render() {
-
-        var toggleText = !this.state.toggle ? "Play" : "Stop";
-
         return (
             <div>
                 <WatchStyled>
-                    <Container>
+                    {/* <Container>
                         <Text>{this.state.currentTime}</Text>
+                    </Container> */}
+                    <Container>
+                        <ElapsedTime timingEvents={this.state.timingEvents} />
+                        <Buttons handleClick={this.addTimerEvent} timingEvents={this.state.timingEvents} />
                     </Container>
-                    <p>
-                        <button onClick={this.playTime}>{toggleText}</button>
-                    </p>
-                    <p>
-                        <button onClick={this.resetTime}>Reset</button>
-                    </p>
+                    
                 </WatchStyled>
             </div>
         )
