@@ -1,5 +1,7 @@
 {
   "name": "timedoctor",
+  "author": "Daniel Carlson",
+  "description": "Desktop application to track work time",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,7 +15,7 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^3.4.9"
   },
-  "main": "public/electron-starter.js",
+  "main": "public/electron.js",
   "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
@@ -28,6 +30,7 @@
   },
   "build": {
     "appId": "com.daniel.timedoctor",
+    "extends": null,
     "directories": {
       "app": "./build",
       "output": "./dist",
@@ -71,6 +74,7 @@
   "electron-dev": "ELECTRON_START_URL=http://localhost:3000 electron .",
   "devDependencies": {
     "electron": "^3.0.0",
+    "electron-builder": "^20.28.4",
     "foreman": "^3.0.1",
     "redux-devtools-extension": "^2.13.5"
   }
