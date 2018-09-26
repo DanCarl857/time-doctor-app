@@ -1,9 +1,9 @@
 import React from 'react';
-import HeaderStyled, { HeaderTextStyled } from './styles';
+import HeaderStyled, { HeaderTextStyled, HeaderLogo } from './styles';
 import { connect } from 'react-redux';
 
 // Import logo
-// import logo from './../../assets/int_td.png';
+import logo from './../../assets/logo.png';
 
 /* 
  * Header component:
@@ -34,6 +34,7 @@ class Header extends React.Component {
         return (
             <div>
                 <HeaderStyled running={this.state.running}>
+                    <HeaderLogo src={logo} alt="Time Doctor logo" className="App-logo" />
                     <HeaderTextStyled>Time Doctor</HeaderTextStyled>
                 </HeaderStyled>
             </div>

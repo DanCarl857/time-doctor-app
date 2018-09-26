@@ -10,11 +10,20 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { rootReducer } from './reducers';
 
+// Access Electron modules
+const electron = window.require('electron');
+const ipc = electron.ipcRenderer;
+
 // Create Store
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
+// This is so that we can be able to access the timer from the widget
+store.subscribe(() => {
+    ipc.send("timer", store.getState());
+});
+
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <App ipc={ipc} />
     </Provider>, 
     document.getElementById('root'));

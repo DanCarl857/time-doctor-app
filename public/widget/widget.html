@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet"> 
+  <title></title>
+  <style>
+    body {
+        background:  #34495e; 
+      -webkit-user-select: none;
+      -webkit-app-region: drag;
+      font-family: 'Lato', 'Roboto Mono', monospace, sans-serif;
+    }
+    .main{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    /* Courtesy of fasidOnGit */
+    .shine {
+      display: block;
+      margin:3px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #53BE78
+    }
+
+    .dim {
+      display: block;
+      margin: 3px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #112339;
+    }
+    .drag {
+      color: white;
+      margin-left: 5px;
+    }
+    #startStop {
+      background-color: #476270;
+      padding: 5px;
+      margin-right: 5px;
+      border-radius: 48%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #timer {
+      font-size: 18px;
+      color: #ffffff;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+    .close {
+      background-color: #112339;
+      padding: 5px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+    <div class="main">
+        <img src="./assets/dragndrop.svg" class="drag">&nbsp;
+        <div id="startStop"></div>&nbsp;
+        <span id="statusLight"></span>&nbsp;
+        <span id="timer"></span>
+        &nbsp;<span class="close"><img style="height:1em;width:1em;margin:3px;" src="./assets/clear.svg" id="hide"></span>
+    </div>
+  <script src="./widget.js"></script>
+</body>
+</html>

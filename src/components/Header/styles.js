@@ -4,7 +4,8 @@ const HeaderStyled = styled.header`
     background-color: ${props => props.running ? '#53BE78' : '#6B849E'}
     color: #fff;
     margin-top: 0;
-    padding: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
 `
 
 const HeaderTextStyled = styled.p`
@@ -12,4 +13,12 @@ const HeaderTextStyled = styled.p`
     font-weight: 300
 `
 
-export { HeaderStyled as default, HeaderTextStyled }
+const HeaderLogo = styled.img`
+    color: #fff;
+    float: left;
+    margin-top: 15px;
+    margin-left: 8px;
+    margin-right: 5px;
+`
+
+export { HeaderStyled as default, HeaderTextStyled, HeaderLogo }
