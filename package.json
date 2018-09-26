@@ -13,7 +13,7 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^3.4.9"
   },
-  "main": "src/config/electron-starter.js",
+  "main": "public/electron-starter.js",
   "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
@@ -21,7 +21,52 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "electron": "electron .",
-    "dev": "nf start"
+    "dev": "nf start",
+    "pack": "build --dir",
+    "release": "build",
+    "dist": "PROD=true npm run build && build"
+  },
+  "build": {
+    "appId": "com.daniel.timedoctor",
+    "directories": {
+      "app": "./build",
+      "output": "./dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "*/**"
+    ],
+    "mac": {
+      "category": "public.app-category.utility",
+      "icon": "assets/build.icns",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": "nsis"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false,
+      "perMachine": true
+    }
   },
   "electron-dev": "ELECTRON_START_URL=http://localhost:3000 electron .",
   "devDependencies": {

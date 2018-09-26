@@ -9,7 +9,7 @@ import Buttons from './../Buttons/Buttons';
 import ElapsedTime from './../ElapsedTime/ElapsedTime';
 
 // Action Creators
-import { updateRunningState } from './../../actions/running.action';
+import { updateRunningState, updateElapsedTime } from './../../actions/running.action';
 
 /* 
  * Watch component:
@@ -24,16 +24,22 @@ class Watch extends React.Component {
         this.state = {
             timingEvents: [],
             nonce: 0,
-            running: false
+            running: false,
+            elapsedTime: 0
         }
 
         this.addTimerEvent = this.addTimerEvent.bind(this);
         this.tick = this.tick.bind(this);
         this.poll = setInterval(this.tick, 1000);
+        this.getElapsedTime = this.getElapsedTime.bind(this);
     } 
 
     tick() {
         this.setState((prevState) => ({ nonce: prevState.nonce + 1 }));
+    }
+
+    getElapsedTime(value) {
+        this.props.updateElapsedTime(value);
     }
 
     addTimerEvent() {
@@ -55,6 +61,9 @@ class Watch extends React.Component {
             // When timer stops we still have to update the running state
             this.props.updateRunningState(1);
             this.setState({ running: false });
+            
+            // Update Elapsed Time acroos application
+            this.getElapsedTime
         }
     }
 
@@ -64,10 +73,18 @@ class Watch extends React.Component {
                 <WatchStyled>
                     <Container>
                         <Column>
-                            <ElapsedTime timingEvents={this.state.timingEvents} running={this.state.running} />
+                            <ElapsedTime 
+                                timingEvents={this.state.timingEvents} 
+                                running={this.state.running} 
+                                computeElapsedTime={this.getElapsedTime}
+                            />
                         </Column>
                         <Column>
-                            <Buttons handleClick={this.addTimerEvent} timingEvents={this.state.timingEvents} running={this.state.running} />
+                            <Buttons 
+                                handleClick={this.addTimerEvent} 
+                                timingEvents={this.state.timingEvents} 
+                                running={this.state.running} 
+                            />
                         </Column>
                     </Container>
                 </WatchStyled>
@@ -76,4 +93,4 @@ class Watch extends React.Component {
     }
 }
 
-export default connect(null, { updateRunningState })(Watch);
+export default connect(null, { updateRunningState, updateElapsedTime })(Watch);
