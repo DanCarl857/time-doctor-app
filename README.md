@@ -33,10 +33,15 @@
 ##### Production
 
 ###### Running the application
+* `npm run build` to build the application
+* `npm run pack` to package the application
+* `npm run release` to build for macOS, Linux and Windows
+* `npm run dist` can do all the above steps except packaging the application
 
 ##### Difficulties
 * For some reason styling for svg files wasn't working so I had to manually style them from their code and had to design a time doctor icon myself.
 * Real time communication between main window and widget window
+* Building with electron-builder kept failing with error about not finding electron.js and the known fix for the bug found [here](https://github.com/electron-userland/electron-builder/issues/2404) didn't work for me
 * Was ill during the test period
 
 ##### Future work
